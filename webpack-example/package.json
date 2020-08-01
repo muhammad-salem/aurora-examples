@@ -1,0 +1,30 @@
+{
+  "name": "webpack-example",
+  "version": "1.0.0",
+  "description": "A TS-Component Test App",
+  "main": "dist/index.js",
+  "scripts": {
+    "buildtest": "tsc && cp src/*.html dist/",
+    "buildtestw": "tsc -w",
+    "server": "ariiad -rl ./dist/",
+    "webpack":"npx webpack"
+  },
+  "author": "@Salem",
+  "dependencies": {
+    "aurora-ts": "^1.0.0",
+    "bootstrap": "^5.0.0-alpha1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.24",
+    "css-loader": "^4.1.1",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.8",
+    "ts-loader": "^8.0.1",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}

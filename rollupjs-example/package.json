@@ -1,0 +1,29 @@
+{
+  "name": "rollupjs-example",
+  "version": "1.0.0",
+  "description": "A TS-Component Test App",
+  "main": "build/index.js",
+  "scripts": {
+    "pretsc": "rm -rf dist && mkdir dist && cp src/*.html dist/",
+    "tsc": "tsc -b",
+    "buildtestw": "tsc -w",
+    "server": "ariiad -rl ./dist/",
+    "build": "npx rollup -c"
+  },
+  "author": "@Salem",
+  "dependencies": {
+    "aurora-ts": "^1.0.0",
+    "bootstrap": "^5.0.0-alpha1",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-html": "^0.2.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "@types/node": "^14.0.24",
+    "rollup": "^2.23.0",
+    "rollup-plugin-css-only": "^2.1.0",
+    "rollup-plugin-html": "^0.2.1",
+    "typescript": "^3.9.7"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "extends": "./node_modules/aurora-ts/tsconfig.base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "build",
+    "target": "ES2020",
+    "rootDirs": [
+      "src",
+      "node_modules/aurora-ts/src"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "node_modules/aurora-ts/src/**/*.ts",
+    "node_modules/aurora-ts/src/**/*.tsx"
+  ],
+ "files": [
+   "src/index.ts",
+   "node_modules/aurora-ts/src/aurora.ts"
+ ],
+  // "references": [
+  //   {
+  //     "path": "./node_modules/aurora-ts/tsconfig.json"
+  //   }
+  // ]
+}

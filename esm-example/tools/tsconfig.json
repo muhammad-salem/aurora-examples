@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2015",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
+  },
+ "files": [
+   "html-to-esmodule.ts"
+ ]
+}

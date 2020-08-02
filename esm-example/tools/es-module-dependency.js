@@ -10,6 +10,7 @@ function replace(dirs) {
     const target = dirs[1] || dirs[0];
     copyHtmlFiles(sourceDir, target);
     scanDir(target);
+    removeHtmlFiles(target);
 }
 exports.replace = replace;
 function copyHtmlFiles(dirPath, targetPath) {
@@ -26,6 +27,19 @@ function copyHtmlFiles(dirPath, targetPath) {
         }
     }
 }
+function removeHtmlFiles(targetPath) {
+    const dir = fs_1.opendirSync(targetPath);
+    let dirent;
+    while ((dirent = dir.readSync()) !== null) {
+        const childPath = targetPath + (targetPath.endsWith(path_1.sep) ? '' : path_1.sep) + dirent.name;
+        if (dirent.isDirectory()) {
+            removeHtmlFiles(childPath);
+        }
+        else if (dirent.name.match(/\.html$/i)) {
+            fs_1.unlinkSync(childPath);
+        }
+    }
+}
 function scanDir(dirPath) {
     const dir = fs_1.opendirSync(dirPath);
     let dirent;
@@ -38,6 +52,7 @@ function scanDir(dirPath) {
             changeFile(dirPath, dirent.name);
         }
     }
+    dir.close();
 }
 function changeFile(parentPath, fileName) {
     const filePath = path_1.resolve(parentPath, fileName);
@@ -47,23 +62,14 @@ function changeFile(parentPath, fileName) {
     if (!match) {
         return;
     }
-    console.log('match', match);
-    console.log('match0', match[0]);
-    console.log('match1', match[1]);
-    console.log('match2', match[2]);
-    console.log('match3', match[3]);
-    // match.forEach(console.log);
     const htmlPath = match[2];
     if (!htmlPath) {
         return;
     }
-    // console.log(htmlPath);
     const content = fs_1.readFileSync(parentPath + path_1.sep + htmlPath.replace('./', ''), 'utf8');
-    // const replacementLookup = `template: ${htmlPath}`;
-    // const replacement = `template: \`${content}\``;
-    // console.log('replacement', replacement);
-    // const newFileString = fileString.replace(replacementLookup, replacement);
-    const newFileString = fileString.replace('\'' + htmlPath + '\'', `\`${content}\``);
-    console.log('newFileString', newFileString);
+    const replacementLookup = `template: '${htmlPath}'`;
+    const replacement = `template: \`${content}\``;
+    const newFileString = fileString.replace(replacementLookup, replacement);
+    // const newFileString = fileString.replace('\'' + htmlPath + '\'', `\`${content}\``);
     fs_1.writeFileSync(filePath, newFileString, 'utf8');
 }

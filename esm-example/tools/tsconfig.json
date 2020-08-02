@@ -8,7 +8,7 @@
       "node"
     ]
   },
- "files": [
-   "html-to-esmodule.ts"
- ]
+  "include": [
+    "**/*.ts"
+  ]
 }

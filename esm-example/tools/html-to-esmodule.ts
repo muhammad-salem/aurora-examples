@@ -1,4 +1,4 @@
-import path, { sep } from 'path';
+import { sep } from 'path';
 import { argv } from 'process';
 import { readFileSync, promises, writeFileSync, mkdirSync, existsSync } from 'fs';
 
@@ -22,9 +22,11 @@ async function htmlToJsModule(path: string, target: string) {
         }
     }
 }
-if (argv.length === 3) {
-    htmlToJsModule(argv[2], argv[2]).catch(console.error);
-} else {
-    htmlToJsModule(argv[2], argv[3]).catch(console.error);
+export function convert(dirs: string[]) {
+    if (dirs.length === 1) {
+        htmlToJsModule(dirs[0], dirs[0]).catch(console.error);
+    } else {
+        htmlToJsModule(dirs[0], dirs[1]).catch(console.error);
+    }
 }
 

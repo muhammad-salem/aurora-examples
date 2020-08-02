@@ -16,8 +16,8 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
     function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.convert = void 0;
 const path_1 = require("path");
-const process_1 = require("process");
 const fs_1 = require("fs");
 function htmlToJsModule(path, target) {
     var e_1, _a;
@@ -51,9 +51,12 @@ function htmlToJsModule(path, target) {
         }
     });
 }
-if (process_1.argv.length === 3) {
-    htmlToJsModule(process_1.argv[2], process_1.argv[2]).catch(console.error);
+function convert(dirs) {
+    if (dirs.length === 1) {
+        htmlToJsModule(dirs[0], dirs[0]).catch(console.error);
+    }
+    else {
+        htmlToJsModule(dirs[0], dirs[1]).catch(console.error);
+    }
 }
-else {
-    htmlToJsModule(process_1.argv[2], process_1.argv[3]).catch(console.error);
-}
+exports.convert = convert;

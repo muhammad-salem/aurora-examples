@@ -5,8 +5,9 @@
   "main": "build/index.js",
   "scripts": {
     "prebuild1": "rm -rf build && mkdir -p build/src/ && cp src/*.html build/src/ && rename.ul .html .html.js build/src/*.html",
-    "prebuild": "rm -rf build && mkdir -p build/src/ && node tools/html-to-esmodule.js ./src ./build/src",
+    "prebuild": "rm -rf build",
     "build": "tsc",
+    "postbuild": "node tools/tool-mg.js ./src ./build/src",
     "buildw": "tsc -w",
     "server": "ariiad -rl ./dist/"
   },

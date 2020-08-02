@@ -11,7 +11,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 import { Service, Component, Input, Output, View, ViewChild, ViewChildren, Optional, HostListener, SelfSkip, HostBinding, EventEmitter } from '../node_modules/aurora-ts/src/aurora.js';
-import html from './person-view.html.js';
 let LogService = class LogService {
     constructor() { }
     info(message) {
@@ -155,7 +154,18 @@ __decorate([
 PersonModel = __decorate([
     Component({
         selector: 'person-view',
-        template: html
+        template: `<div>
+    {{person.name}}
+    {{person.age}}
+</div>
+<p id="p-name" #nameArea class="{{className}}" onclick="resize()">
+    Your name is {{name}}
+</p>
+<p id="p-age" #ageArea>youur age is: {{years}}, born in Year of {{yearOfBirth()}}</p>
+<div if="id===1">
+    Dummy Test
+    <p>Data</p>
+</div>`
     }),
     __param(0, Optional()),
     __metadata("design:paramtypes", [LogService])

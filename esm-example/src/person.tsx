@@ -3,8 +3,7 @@ import {
 	ViewChildren, Optional, HostListener, SelfSkip, HostBinding, OnInit, EventEmitter, htmlFullPath
 } from '../node_modules/aurora-ts/src/aurora.js';
 
-
-import html from './person-view.html.js';
+// import html from './person-view.html.js';
 
 @Service({ provideIn: 'root' })
 export class LogService {
@@ -24,7 +23,7 @@ export interface Person {
 
 @Component({
 	selector: 'person-view',
-	template: html
+	template: './person-view.html'
 })
 export class PersonModel implements OnInit {
 	@Input() name: string;
